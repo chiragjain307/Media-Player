@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ICON from '../../assets/media-player.png'
 function Header() {
     const [open, setOpen] = useState(false)
+    const [buttonName, setButtonName] = useState(null)
 
     return (
         <header className='h-14 bg-gray-400 '>
@@ -10,28 +11,56 @@ function Header() {
                 <h1>Media Player</h1>
             </div>
             <div className='flex gap-4 ml-4 h-1/2 items-center'>
-                <div>
-                    <button onClick={() => setOpen(!open)}>Open</button>
-                    {open && (
-                        <ul className=' absolute bg-gray-200 top-14'>
+                <div className='h-full'>
+                    <button
+                        onClick={() => setOpen(!open)}
+                        onMouseEnter={() => setButtonName('Open')}
+                        // onMouseLeave={() => setButtonName(null)}
+                        className='h-full'
+                    >Open</button>
+                    {open && buttonName === 'Open' && (
+                        <ul
+                            onMouseEnter={() => setButtonName('Open')}
+                            // onMouseLeave={() => setButtonName(null)}
+                            className='absolute bg-gray-200 top-14'>
                             <li>Speed Up</li>
                             <li>Speed Down</li>
                         </ul>
                     )}
                 </div>
-                <div>
-                    <button>Playback</button>
-                    <ul className=' absolute bg-gray-200 top-14'>
-                        <li>Speed Up</li>
-                        <li>Speed Down</li>
-                    </ul>
+                <div className='h-full'>
+                    <button
+                        onClick={() => setOpen(!open)}
+                        onMouseEnter={() => setButtonName('Playback')}
+                        // onMouseLeave={() => setButtonName(null)}
+                        className='h-full'
+                    >Playback</button>
+                    {open && buttonName === 'Playback' && (
+                        <ul
+                            onMouseEnter={() => setButtonName('Playback')}
+                            // onMouseLeave={() => setButtonName(null)}
+                            className='absolute bg-gray-200 top-14'>
+                            <li>Speed Up</li>
+                            <li>Speed Down</li>
+                        </ul>
+                    )}
                 </div>
-                <div>
-                    <button>Audio</button>
-                    <ul className=' absolute bg-gray-200 top-14'>
-                        <li>Speed Up</li>
-                        <li>Speed Down</li>
-                    </ul>
+                <div className='h-full'>
+                    <button
+                        onClick={() => setOpen(!open)}
+                        onMouseEnter={() => setButtonName('Audio')}
+                        // onMouseLeave={() => setButtonName(null)}
+                        className='h-full'
+                    >Audio</button>
+                    {open && buttonName === 'Audio' && (
+                        <ul
+                            onMouseEnter={() => setButtonName('Audio')}
+                            // onMouseLeave={() => setButtonName(null)}
+                            className='absolute bg-gray-200 top-14'>
+                            <li>Speed Up</li>
+                            <li>Speed Down</li>
+                        </ul>
+                    )}
                 </div>
             </div>
         </header>
