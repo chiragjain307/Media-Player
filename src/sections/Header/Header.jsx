@@ -1,8 +1,25 @@
-import React, { useState } from 'react'
-import ICON from '../../assets/media-player.png'
-function Header() {
-    const [open, setOpen] = useState(false)
-    const [buttonName, setButtonName] = useState(null)
+import React, { useState } from 'react';
+import ICON from '../../assets/media-player.png';
+
+function Header({ setVideoSrc }) {
+    const [open, setOpen] = useState(false);
+    const [buttonName, setButtonName] = useState(null);
+
+    const handleOpenFileClick = () => {
+        document.getElementById('fileInput').click();
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        const link = URL.createObjectURL(file)
+        const reader = new FileReader();
+        setVideoSrc(link)
+        setOpen(false)
+        // reader.readAsDataURL(file);
+        // reader.onloadend = () => {
+        //     setVideoSrc(reader.result);
+        // };
+    };
 
     return (
         <header className='h-14 bg-gray-400 '>
@@ -15,16 +32,26 @@ function Header() {
                     <button
                         onClick={() => setOpen(!open)}
                         onMouseEnter={() => setButtonName('Open')}
-                        // onMouseLeave={() => setButtonName(null)}
                         className='h-full'
                     >Open</button>
                     {open && buttonName === 'Open' && (
                         <ul
                             onMouseEnter={() => setButtonName('Open')}
-                            // onMouseLeave={() => setButtonName(null)}
-                            className='absolute bg-gray-200 top-14'>
-                            <li>Speed Up</li>
-                            <li>Speed Down</li>
+                            className='absolute bg-gray-200 top-14 rounded-sm '>
+                            <li
+                                className='p-2 w-full hover:bg-gray-300 text-center cursor-pointer'
+                                onClick={handleOpenFileClick}
+                            >
+                                Open File
+                                <input
+                                    type="file"
+                                    id="fileInput"
+                                    style={{ display: 'none' }}
+                                    // onChange={(e)=>console.log(e)
+                                    onChange={handleFileChange}
+                                />
+                            </li>
+                            <li className='p-2 hover:bg-gray-300 text-center'>Speed Down</li>
                         </ul>
                     )}
                 </div>
@@ -32,16 +59,14 @@ function Header() {
                     <button
                         onClick={() => setOpen(!open)}
                         onMouseEnter={() => setButtonName('Playback')}
-                        // onMouseLeave={() => setButtonName(null)}
                         className='h-full'
                     >Playback</button>
                     {open && buttonName === 'Playback' && (
                         <ul
                             onMouseEnter={() => setButtonName('Playback')}
-                            // onMouseLeave={() => setButtonName(null)}
-                            className='absolute bg-gray-200 top-14'>
-                            <li>Speed Up</li>
-                            <li>Speed Down</li>
+                            className='absolute bg-gray-200 top-14 rounded-sm '>
+                            <li className='p-2 w-full hover:bg-gray-300 text-center'>Speed Up</li>
+                            <li className='p-2 hover:bg-gray-300 text-center'>Speed Down</li>
                         </ul>
                     )}
                 </div>
@@ -49,22 +74,20 @@ function Header() {
                     <button
                         onClick={() => setOpen(!open)}
                         onMouseEnter={() => setButtonName('Audio')}
-                        // onMouseLeave={() => setButtonName(null)}
                         className='h-full'
                     >Audio</button>
                     {open && buttonName === 'Audio' && (
                         <ul
                             onMouseEnter={() => setButtonName('Audio')}
-                            // onMouseLeave={() => setButtonName(null)}
-                            className='absolute bg-gray-200 top-14'>
-                            <li>Speed Up</li>
-                            <li>Speed Down</li>
+                            className='absolute bg-gray-200 top-14 rounded-sm '>
+                            <li className='p-2 w-full hover:bg-gray-300 text-center'>Speed Up</li>
+                            <li className='p-2 hover:bg-gray-300 text-center'>Speed Down</li>
                         </ul>
                     )}
                 </div>
             </div>
         </header>
-    )
+    );
 }
 
-export default Header
+export default Header;
