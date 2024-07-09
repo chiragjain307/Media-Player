@@ -1,17 +1,16 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Header from './sections/Header/Header'
 import Main from './sections/Main/Main'
 import Footer from './sections/Footer/Footer'
 
-
 function App() {
-  const [videoSrc, setVideoSrc] = useState(null);
-  // console.log(videoSrc)
+  const [mediaSrc, setMediaSrc] = useState(null);
+  const [mediaType, setMediaType] = useState(null);
 
   return (
     <>
-      <Header setVideoSrc={setVideoSrc} />
-      <Main videoSrc={videoSrc} />
+      <Header setMediaSrc={setMediaSrc} setMediaType={setMediaType} />
+      <Main mediaSrc={mediaSrc} mediaType={mediaType} />
       <Footer />
     </>
   );

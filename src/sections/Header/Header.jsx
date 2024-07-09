@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ICON from '../../assets/media-player.png';
 
-function Header({ setVideoSrc }) {
+function Header({ setMediaSrc, setMediaType }) {
     const [open, setOpen] = useState(false);
     const [buttonName, setButtonName] = useState(null);
 
@@ -12,14 +12,17 @@ function Header({ setVideoSrc }) {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         // console.log(file)
-        const link = URL.createObjectURL(file)
-        setVideoSrc(link)
-        setOpen(false)
-        // const reader = new FileReader();
-        // reader.readAsDataURL(file);
-        // reader.onloadend = () => {
-        //     setVideoSrc(reader.result);
-        // };
+        const fileType = file.type.startsWith('image/') ? 'image' : file.type.startsWith('video/') ? 'video' : file.type.startsWith('audio/') ? 'audio' : null;
+
+        if (fileType) {
+            const link = URL.createObjectURL(file);
+            setMediaSrc(link);
+            setMediaType(fileType);
+        } else {
+            alert('File type not supported!');
+        }
+
+        setOpen(false);
     };
 
     return (
