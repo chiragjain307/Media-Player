@@ -6,6 +6,7 @@ import Footer from './sections/Footer/Footer'
 
 function App() {
   const [videoSrc, setVideoSrc] = useState(null);
+  // console.log(videoSrc)
 
   return (
     <>

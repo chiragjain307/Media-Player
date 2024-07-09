@@ -11,10 +11,11 @@ function Header({ setVideoSrc }) {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
+        // console.log(file)
         const link = URL.createObjectURL(file)
-        const reader = new FileReader();
         setVideoSrc(link)
         setOpen(false)
+        // const reader = new FileReader();
         // reader.readAsDataURL(file);
         // reader.onloadend = () => {
         //     setVideoSrc(reader.result);
@@ -37,7 +38,7 @@ function Header({ setVideoSrc }) {
                     {open && buttonName === 'Open' && (
                         <ul
                             onMouseEnter={() => setButtonName('Open')}
-                            className='absolute bg-gray-200 top-14 rounded-sm '>
+                            className='absolute bg-gray-200 top-14 rounded-sm z-10 '>
                             <li
                                 className='p-2 w-full hover:bg-gray-300 text-center cursor-pointer'
                                 onClick={handleOpenFileClick}
@@ -64,7 +65,7 @@ function Header({ setVideoSrc }) {
                     {open && buttonName === 'Playback' && (
                         <ul
                             onMouseEnter={() => setButtonName('Playback')}
-                            className='absolute bg-gray-200 top-14 rounded-sm '>
+                            className='absolute bg-gray-200 top-14 rounded-sm z-10 '>
                             <li className='p-2 w-full hover:bg-gray-300 text-center'>Speed Up</li>
                             <li className='p-2 hover:bg-gray-300 text-center'>Speed Down</li>
                         </ul>
@@ -79,7 +80,7 @@ function Header({ setVideoSrc }) {
                     {open && buttonName === 'Audio' && (
                         <ul
                             onMouseEnter={() => setButtonName('Audio')}
-                            className='absolute bg-gray-200 top-14 rounded-sm '>
+                            className='absolute bg-gray-200 top-14 rounded-sm z-10 '>
                             <li className='p-2 w-full hover:bg-gray-300 text-center'>Speed Up</li>
                             <li className='p-2 hover:bg-gray-300 text-center'>Speed Down</li>
                         </ul>
