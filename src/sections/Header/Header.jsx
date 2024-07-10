@@ -24,6 +24,11 @@ function Header({ setMediaSrc, setMediaType }) {
 
         setOpen(false);
     };
+        // const reader = new FileReader();
+        // reader.readAsDataURL(file);
+        // reader.onloadend = () => {
+        //     setVideoSrc(reader.result);
+        // };
 
     return (
         <header className='h-14 bg-gray-400 '>
