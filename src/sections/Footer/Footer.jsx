@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaBackward, FaPlay, FaForward, FaBars, FaVolumeUp, FaExpand } from 'react-icons/fa';
+import { FaBackward, FaPlay, FaForward, FaVolumeUp, FaExpand } from 'react-icons/fa';
 
 function Footer() {
     return (
@@ -10,7 +10,7 @@ function Footer() {
                 <button className=' border-2 p-1'><FaPlay /></button>
                 <button className=' border-2 p-1'><FaForward /></button>
                 {/* <button className=' border-2 p-1'><FaBars /></button> */}
-                <input type="range" name="" id="" value='0' className='' />
+                <input type="range" name="" id=""  className='' />
             </div>
 
             <div className='flex-grow'></div> {/* Spacer */}

@@ -24,11 +24,11 @@ function Header({ setMediaSrc, setMediaType }) {
 
         setOpen(false);
     };
-        // const reader = new FileReader();
-        // reader.readAsDataURL(file);
-        // reader.onloadend = () => {
-        //     setVideoSrc(reader.result);
-        // };
+    // const reader = new FileReader();
+    // reader.readAsDataURL(file);
+    // reader.onloadend = () => {
+    //     setVideoSrc(reader.result);
+    // };
 
     return (
         <header className='h-14 bg-gray-400 '>
@@ -36,35 +36,21 @@ function Header({ setMediaSrc, setMediaType }) {
                 <img src={ICON} alt="icon" className='h-6' />
                 <h1>Media Player</h1>
             </div>
-            <div className='flex gap-4 ml-4 h-1/2 items-center'>
+            <div className='flex ml-4 h-1/2 items-center'>
                 <div className='h-full'>
                     <button
-                        onClick={() => setOpen(!open)}
-                        onMouseEnter={() => setButtonName('Open')}
-                        className='h-full'
-                    >Open</button>
-                    {open && buttonName === 'Open' && (
-                        <ul
-                            onMouseEnter={() => setButtonName('Open')}
-                            className='absolute bg-gray-200 top-14 rounded-sm z-10 '>
-                            <li
-                                className='p-2 w-full hover:bg-gray-300 text-center cursor-pointer'
-                                onClick={handleOpenFileClick}
-                            >
-                                Open File
-                                <input
-                                    type="file"
-                                    id="fileInput"
-                                    style={{ display: 'none' }}
-                                    // onChange={(e)=>console.log(e)
-                                    onChange={handleFileChange}
-                                />
-                            </li>
-                            <li className='p-2 hover:bg-gray-300 text-center'>Speed Down</li>
-                        </ul>
-                    )}
+                        onClick={handleOpenFileClick}
+                        className='h-full hover:bg-gray-300 px-2'
+                    >Open
+                        <input
+                            type="file"
+                            id="fileInput"
+                            style={{ display: 'none' }}
+                            onChange={handleFileChange}
+                        />
+                    </button>
                 </div>
-                <div className='h-full'>
+                <div className='h-full hover:bg-gray-300 px-2'>
                     <button
                         onClick={() => setOpen(!open)}
                         onMouseEnter={() => setButtonName('Playback')}
@@ -73,13 +59,13 @@ function Header({ setMediaSrc, setMediaType }) {
                     {open && buttonName === 'Playback' && (
                         <ul
                             onMouseEnter={() => setButtonName('Playback')}
-                            className='absolute bg-gray-200 top-14 rounded-sm z-10 '>
+                            className='absolute bg-gray-200 top-14 left-16 rounded-sm z-10 '>
                             <li className='p-2 w-full hover:bg-gray-300 text-center'>Speed Up</li>
                             <li className='p-2 hover:bg-gray-300 text-center'>Speed Down</li>
                         </ul>
                     )}
                 </div>
-                <div className='h-full'>
+                <div className='h-full hover:bg-gray-300 px-2'>
                     <button
                         onClick={() => setOpen(!open)}
                         onMouseEnter={() => setButtonName('Audio')}
@@ -88,7 +74,7 @@ function Header({ setMediaSrc, setMediaType }) {
                     {open && buttonName === 'Audio' && (
                         <ul
                             onMouseEnter={() => setButtonName('Audio')}
-                            className='absolute bg-gray-200 top-14 rounded-sm z-10 '>
+                            className='absolute bg-gray-200 top-14 left-32 rounded-sm z-10 '>
                             <li className='p-2 w-full hover:bg-gray-300 text-center'>Speed Up</li>
                             <li className='p-2 hover:bg-gray-300 text-center'>Speed Down</li>
                         </ul>
