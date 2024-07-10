@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ICON from '../../assets/media-player.png';
 
 function Header({ setMediaSrc, setMediaType }) {
     const [open, setOpen] = useState(false);
     const [buttonName, setButtonName] = useState(null);
-
-    const handleOpenFileClick = () => {
-        document.getElementById('fileInput').click();
-    };
+    const fileInputRef = useRef(null)
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        // console.log(file)
         const fileType = file.type.startsWith('image/') ? 'image' : file.type.startsWith('video/') ? 'video' : file.type.startsWith('audio/') ? 'audio' : null;
 
         if (fileType) {
@@ -39,10 +35,11 @@ function Header({ setMediaSrc, setMediaType }) {
             <div className='flex ml-4 h-1/2 items-center'>
                 <div className='h-full'>
                     <button
-                        onClick={handleOpenFileClick}
+                        onClick={() => fileInputRef.current.click()}
                         className='h-full hover:bg-gray-300 px-2'
                     >Open
                         <input
+                            ref={fileInputRef}
                             type="file"
                             id="fileInput"
                             style={{ display: 'none' }}
@@ -50,30 +47,37 @@ function Header({ setMediaSrc, setMediaType }) {
                         />
                     </button>
                 </div>
-                <div className='h-full hover:bg-gray-300 px-2'>
+                <div className='h-full'>
                     <button
-                        onClick={() => setOpen(!open)}
-                        onMouseEnter={() => setButtonName('Playback')}
-                        className='h-full'
+                        onClick={() => {
+                            open ? setButtonName(null) :
+                                setButtonName('Playback')
+                            setOpen(!open)
+                        }}
+                        onMouseEnter={() => open && setButtonName('Playback')}
+                        className={`h-full hover:bg-gray-300 px-2 ${buttonName === 'Playback' && 'bg-gray-300'}`}
                     >Playback</button>
                     {open && buttonName === 'Playback' && (
                         <ul
-                            onMouseEnter={() => setButtonName('Playback')}
                             className='absolute bg-gray-200 top-14 left-16 rounded-sm z-10 '>
                             <li className='p-2 w-full hover:bg-gray-300 text-center'>Speed Up</li>
                             <li className='p-2 hover:bg-gray-300 text-center'>Speed Down</li>
                         </ul>
                     )}
                 </div>
-                <div className='h-full hover:bg-gray-300 px-2'>
+                <div className='h-full'>
                     <button
-                        onClick={() => setOpen(!open)}
-                        onMouseEnter={() => setButtonName('Audio')}
-                        className='h-full'
+                        onClick={() => {
+                            open ? setButtonName(null) :
+                                setButtonName('Audio')
+                            setOpen(!open)
+                        }}
+                        onMouseEnter={() => open && setButtonName('Audio')}
+
+                        className={`h-full hover:bg-gray-300 px-2 ${buttonName === 'Audio' && 'bg-gray-300'}`}
                     >Audio</button>
                     {open && buttonName === 'Audio' && (
                         <ul
-                            onMouseEnter={() => setButtonName('Audio')}
                             className='absolute bg-gray-200 top-14 left-32 rounded-sm z-10 '>
                             <li className='p-2 w-full hover:bg-gray-300 text-center'>Speed Up</li>
                             <li className='p-2 hover:bg-gray-300 text-center'>Speed Down</li>
