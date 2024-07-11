@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import ICON from '../../assets/media-player.png';
 
-function Header({ setMediaSrc, setMediaType, mediaRef }) {
+function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
     const [open, setOpen] = useState(false);
     const [buttonName, setButtonName] = useState(null);
     const fileInputRef = useRef(null)
@@ -23,63 +23,49 @@ function Header({ setMediaSrc, setMediaType, mediaRef }) {
     };
 
     const handelSpeedUp = () => {
-        console.log('speed Up')
-        if (setMediaType === null || setMediaType === 'image') {
-            return;
-        }
-        else {
-            if (mediaRef.current.playbackRate = 2) {
-                return;
-            }
-            else {
-                const speed = mediaRef.current.playbackRate + 0.5
+        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio') ) {
+            if (mediaRef.current.playbackRate < 2) {
+                const speed = mediaRef.current.playbackRate + 0.25
                 mediaRef.current.playbackRate = speed
+                console.log(mediaRef.current.playbackRate)
             }
         }
+        setOpen(false)
+        setButtonName(null)
     }
     const handelSpeedDown = () => {
-        console.log('speed Down')
-        if (setMediaType === null || setMediaType === 'image') {
-            return;
+        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio') ) {
+            if (mediaRef.current.playbackRate > 0) {
+                const speed = mediaRef.current.playbackRate - 0.25
+                mediaRef.current.playbackRate = speed
+                console.log(mediaRef.current.playbackRate)
+            }
         }
-        else if (mediaRef.current.playbackRate > 0) {
-
-            const speed = mediaRef.current.playbackRate - 0.5
-            mediaRef.current.playbackRate = speed
-
-        }
+        setOpen(false)
+        setButtonName(null)
     }
     const handelVolumeUp = () => {
-        console.log('volume Up')
-        if (setMediaType === null || setMediaType === 'image') {
-            return;
-        }
-        else {
-            if (mediaRef.current.volume = 1) {
-                return;
-            }
-            else {
+        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio') ) {
+            if (mediaRef.current.volume < 1) {
                 const volume = mediaRef.current.volume + 0.1
                 mediaRef.current.volume = volume
                 console.log(mediaRef.current.volume)
             }
         }
+        setOpen(false)
+        setButtonName(null)
     }
+
     const handelVolumeDown = () => {
-        console.log('volume Up')
-        if (setMediaType === null || setMediaType === 'image') {
-            return;
-        }
-        else {
-            if (mediaRef.current.volume = 0) {
-                return;
-            }
-            else {
+        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio') ) {
+            if (mediaRef.current.volume > 0.1) {
                 const volume = mediaRef.current.volume - 0.1
                 mediaRef.current.volume = volume
                 console.log(mediaRef.current.volume)
             }
         }
+        setOpen(false)
+        setButtonName(null)
     }
 
     // const reader = new FileReader();
