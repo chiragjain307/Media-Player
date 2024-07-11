@@ -3,7 +3,6 @@ import Header from './sections/Header/Header'
 import Main from './sections/Main/Main'
 import Footer from './sections/Footer/Footer'
 import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 
 
@@ -18,7 +17,6 @@ function App() {
       <Main mediaSrc={mediaSrc} mediaType={mediaType} mediaRef={mediaRef} />
       <Footer mediaType={mediaType} mediaRef={mediaRef} />
       <Analytics />
-      <SpeedInsights />
     </>
   );
 }
