@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
 import ICON from '../../assets/media-player.png'
 
-function Main({ mediaSrc, mediaType, mediaRef }) {
+function Main({ mediaSrc, mediaType, mediaRef, mainRef }) {
     // const mediaRef = useRef(null)
     return (
-        <main style={{ height: "calc(100vh - 6.5rem)", minHeight: "90px" }} className='bg-black flex justify-center items-center overflow-y-scroll'>
+        <main style={{ height: "calc(100vh - 6.5rem)", minHeight: "90px" }} className='bg-black flex justify-center items-center overflow-y-scroll' ref={mainRef}>
             {mediaSrc ? (
                 mediaType === 'video' ? (
                     <video ref={mediaRef} src={mediaSrc} controls className='h-full z-0' />

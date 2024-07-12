@@ -5,7 +5,10 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
     const [open, setOpen] = useState(false);
     const [buttonName, setButtonName] = useState(null);
     const fileInputRef = useRef(null)
-    // console.log(fileInputRef.current)
+    
+    // for showing current value
+    const [show, setShow] = useState(false)
+    const [showValue, setShowValue] = useState(null)
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -22,47 +25,58 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
         setOpen(false);
     };
 
+    // for showing current value
+    const showValues = (value)=>{
+        setShowValue(value)
+        setShow(true)
+        setTimeout(() => {
+            setShow(false)
+            setShowValue(null)
+        }, 2000)
+    }
+
     const handelSpeedUp = () => {
-        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio') ) {
+        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio')) {
             if (mediaRef.current.playbackRate < 2) {
                 const speed = mediaRef.current.playbackRate + 0.25
                 mediaRef.current.playbackRate = speed
-                console.log(mediaRef.current.playbackRate)
             }
+            showValues(mediaRef.current.playbackRate)
         }
         setOpen(false)
         setButtonName(null)
+        
+        
     }
     const handelSpeedDown = () => {
-        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio') ) {
+        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio')) {
             if (mediaRef.current.playbackRate > 0) {
                 const speed = mediaRef.current.playbackRate - 0.25
                 mediaRef.current.playbackRate = speed
-                console.log(mediaRef.current.playbackRate)
             }
+            showValues(mediaRef.current.playbackRate)
         }
         setOpen(false)
         setButtonName(null)
     }
     const handelVolumeUp = () => {
-        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio') ) {
+        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio')) {
             if (mediaRef.current.volume < 1) {
                 const volume = mediaRef.current.volume + 0.1
                 mediaRef.current.volume = volume
-                console.log(mediaRef.current.volume)
             }
+            showValues(mediaRef.current.volume)
         }
         setOpen(false)
         setButtonName(null)
     }
-
     const handelVolumeDown = () => {
-        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio') ) {
+        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio')) {
             if (mediaRef.current.volume > 0.1) {
                 const volume = mediaRef.current.volume - 0.1
                 mediaRef.current.volume = volume
-                console.log(mediaRef.current.volume)
             }
+            showValues(mediaRef.current.volume)
         }
         setOpen(false)
         setButtonName(null)
@@ -76,6 +90,7 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
 
     return (
         <header className='h-14 bg-gray-400 '>
+            {show && <span className=' backdrop-blur-sm z-40 text-2xl text-white absolute right-3 top-16'>{showValue}</span>}
             <div className='flex ml-4 h-1/2 gap-4 items-center '>
                 <img src={ICON} alt="icon" className='h-6' />
                 <h1>Media Player</h1>

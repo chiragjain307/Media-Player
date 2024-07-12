@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { FaBackward, FaPlay,FaPause, FaForward, FaVolumeUp, FaExpand } from 'react-icons/fa';
 
-function Footer({mediaType, mediaRef}) {
+function Footer({mediaType, mediaRef, mainRef}) {
+    console.log(mainRef)
     const [isPlaying, setIsPlaying] = useState(false);
 
     const handlePlayPause = () => {
@@ -34,7 +35,9 @@ function Footer({mediaType, mediaRef}) {
             <div className='flex gap-2'>
                 <span>{mediaRef.current ? mediaRef.current.currentTime : "00:00"}</span>
                 <button><FaVolumeUp /></button>
-                <button><FaExpand /></button>
+                <button onClick={()=>{
+                mainRef.current.requestFullscreen() 
+                    console.log(mainRef.current)}}><FaExpand /></button>
             </div>
         
         </footer>
