@@ -5,7 +5,7 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
     const [open, setOpen] = useState(false);
     const [buttonName, setButtonName] = useState(null);
     const fileInputRef = useRef(null)
-    
+
     // for showing current value
     const [show, setShow] = useState(false)
     const [showValue, setShowValue] = useState(null)
@@ -26,7 +26,7 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
     };
 
     // for showing current value
-    const showValues = (value)=>{
+    const showValues = (value) => {
         setShowValue(value)
         setShow(true)
         setTimeout(() => {
@@ -45,8 +45,8 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
         }
         setOpen(false)
         setButtonName(null)
-        
-        
+
+
     }
     const handelSpeedDown = () => {
         if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio')) {

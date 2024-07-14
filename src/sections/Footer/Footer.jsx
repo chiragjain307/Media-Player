@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import { FaBackward, FaPlay,FaPause, FaForward, FaVolumeUp, FaExpand } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaBackward, FaPlay, FaPause, FaForward, FaVolumeUp, FaExpand } from 'react-icons/fa';
 
-function Footer({mediaType, mediaRef, mainRef}) {
-    console.log(mainRef)
+function Footer({ mediaType, mediaRef, mainRef }) {
     const [isPlaying, setIsPlaying] = useState(false);
 
     const handlePlayPause = () => {
+        // console.log(mediaRef.current)
         if (mediaRef.current) {
             if (isPlaying) {
                 mediaRef.current.pause();
@@ -16,7 +16,13 @@ function Footer({mediaType, mediaRef, mainRef}) {
         }
     };
 
-    // console.log(mediaType, mediaRef)
+    const handelFullScreen = () => {
+        if (mediaType) {
+            mainRef.current.requestFullscreen()
+        }
+        else return
+    }
+
     return (
         <footer className='bg-gray-400 h-12 flex items-center justify-around px-3'>
 
@@ -27,19 +33,17 @@ function Footer({mediaType, mediaRef, mainRef}) {
                 </button>
                 <button className=' border-2 p-1'><FaForward /></button>
                 {/* <button className=' border-2 p-1'><FaBars /></button> */}
-                <input type="range" name="" id=""  className='' />
+                <input type="range" name="" id="" className='' />
             </div>
 
             <div className='flex-grow'></div> {/* Spacer */}
 
-            <div className='flex gap-2'>
+            <div className={`flex gap-2 ${mediaType === null ? 'pointer-events-none' : null} `}>
                 <span>{mediaRef.current ? mediaRef.current.currentTime : "00:00"}</span>
                 <button><FaVolumeUp /></button>
-                <button onClick={()=>{
-                mainRef.current.requestFullscreen() 
-                    console.log(mainRef.current)}}><FaExpand /></button>
+                <button onClick={handelFullScreen}><FaExpand /></button>
             </div>
-        
+
         </footer>
     );
 }
