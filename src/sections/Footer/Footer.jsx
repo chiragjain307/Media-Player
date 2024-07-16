@@ -49,8 +49,8 @@ function Footer({ mediaType, mediaRef, mainRef }) {
     }, [mediaRef]);
 
     return (
-        <footer className='bg-gray-400 h-12 flex items-center justify-around px-3'>
-            <div className={`flex ${mediaType === null || mediaType === 'image' ? 'pointer-events-none' : ''}`}>
+        <footer className='bg-gray-400 h-12 flex items-center justify-around px-3 gap-2'>
+            <div className={`flex w-full items-center ${mediaType === null || mediaType === 'image' ? 'pointer-events-none' : ''}`}>
                 <button className='border-2 p-1 pointer-events-none'><FaBackward /></button>
                 <button className='border-2 p-1' onClick={handlePlayPause}>
                     {isPlaying ? <FaPause /> : <FaPlay />}
@@ -62,14 +62,12 @@ function Footer({ mediaType, mediaRef, mainRef }) {
                     max={duration}
                     value={currentTime}
                     onChange={handleSliderChange}
-                    className='ml-2'
+                    className='ml-2 w-[90%] mr- appearance-none h-5 rounded-xl'
                 />
             </div>
 
-            <div className='flex-grow'></div> {/* Spacer */}
-
-            <div className={`flex gap-2 ${mediaType === null ? 'pointer-events-none' : ''}`}>
-                <span>{formatTime(currentTime)}</span>
+            <div className={`flex gap-2 w-40 ${mediaType === null ? 'pointer-events-none' : ''}`}>
+                <span className='w-11 text-right'>{formatTime(currentTime)}</span>
                 <span>/</span>
                 <span>{formatTime(duration)}</span>
                 <button><FaVolumeUp /></button>
