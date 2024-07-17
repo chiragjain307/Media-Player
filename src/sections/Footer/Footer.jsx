@@ -62,7 +62,7 @@ function Footer({ mediaType, mediaRef, mainRef }) {
                     max={duration}
                     value={currentTime}
                     onChange={handleSliderChange}
-                    className='ml-2 w-[90%] mr- appearance-none h-5 rounded-xl'
+                    className='range ml-2 w-[90%] appearance-none h-5 rounded-xl'
                 />
             </div>
 

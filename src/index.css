@@ -5,3 +5,19 @@
 #root{
     min-width: 330px;
 }
+
+.range {
+    background: #edf1f4;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .range::-webkit-slider-thumb {
+    appearance: none;
+    height: 15px;
+    width: 15px;
+    background: #363535;
+    border-radius: 50%;
+    box-shadow: -997px 0 0 1000px #726c76;
+  }
+  
