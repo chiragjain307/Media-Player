@@ -36,7 +36,7 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
     }
 
     const handelSpeedUp = () => {
-        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio')) {
+        if (mediaRef.current) {
             if (mediaRef.current.playbackRate < 2) {
                 const speed = mediaRef.current.playbackRate + 0.25
                 mediaRef.current.playbackRate = speed
@@ -49,7 +49,7 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
 
     }
     const handelSpeedDown = () => {
-        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio')) {
+        if (mediaRef.current) {
             if (mediaRef.current.playbackRate > 0) {
                 const speed = mediaRef.current.playbackRate - 0.25
                 mediaRef.current.playbackRate = speed
@@ -60,7 +60,7 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
         setButtonName(null)
     }
     const handelVolumeUp = () => {
-        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio')) {
+        if (mediaRef.current) {
             if (mediaRef.current.volume < 1) {
                 const volume = mediaRef.current.volume + 0.1
                 mediaRef.current.volume = volume
@@ -71,7 +71,7 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
         setButtonName(null)
     }
     const handelVolumeDown = () => {
-        if (mediaRef.current && (mediaType === 'video' || mediaType === 'audio')) {
+        if (mediaRef.current) {
             if (mediaRef.current.volume > 0.1) {
                 const volume = mediaRef.current.volume - 0.1
                 mediaRef.current.volume = volume
@@ -118,7 +118,7 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
                             setOpen(!open)
                         }}
                         onMouseEnter={() => open && setButtonName('Playback')}
-                        className={`h-full hover:bg-gray-300 px-2 ${buttonName === 'Playback' && 'bg-gray-300'}`}
+                        className={`h-full hover:bg-gray-300 px-2 ${buttonName === 'Playback' && 'bg-gray-300'} ${mediaType === null || mediaType === 'image' ? 'pointer-events-none' : ''}`}
                     >Playback</button>
                     {open && buttonName === 'Playback' && (
                         <ul
@@ -137,7 +137,7 @@ function Header({ setMediaSrc, mediaType, setMediaType, mediaRef }) {
                         }}
                         onMouseEnter={() => open && setButtonName('Audio')}
 
-                        className={`h-full hover:bg-gray-300 px-2 ${buttonName === 'Audio' && 'bg-gray-300'}`}
+                        className={`h-full hover:bg-gray-300 px-2 ${buttonName === 'Audio' && 'bg-gray-300'} ${mediaType === null || mediaType === 'image' ? 'pointer-events-none' : ''}`}
                     >Audio</button>
                     {open && buttonName === 'Audio' && (
                         <ul
