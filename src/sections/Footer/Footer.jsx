@@ -11,15 +11,22 @@ function Footer({ mediaType, mediaRef, mainRef }) {
     const [showValue, setShowValue] = useState(null)
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        const updateCurrentTime = () => {
             if (mediaRef.current) {
                 setCurrentTime(mediaRef.current.currentTime);
                 setDuration(mediaRef.current.duration);
+                if (mediaRef.current.ended) {
+                    setIsPlaying(false);
+                }
             }
-        }, 1000);
+        };
 
-        return () => clearInterval(interval);
-    }, [mediaRef]);
+        if (isPlaying) {
+            const interval = setInterval(updateCurrentTime, 1000);
+            return () => clearInterval(interval);
+        }
+    }, [isPlaying, mediaRef]);
+
 
     const handlePlayPause = () => {
         if (mediaRef.current) {
@@ -41,6 +48,7 @@ function Footer({ mediaType, mediaRef, mainRef }) {
     const handleSliderChange = (e) => {
         const newTime = e.target.value;
         if (mediaRef.current) {
+            console.log("change")
             mediaRef.current.currentTime = newTime;
             setCurrentTime(newTime);
         }
