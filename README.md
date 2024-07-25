@@ -1,4 +1,4 @@
-# Blog Website
+# Media Player
 
 [![GitHub stars](https://img.shields.io/github/stars/chiragjain307/Media-Player)](https://github.com/chiragjain307/Media-Player/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/chiragjain307/Media-Player)](https://github.com/chiragjain307/Media-Player)
